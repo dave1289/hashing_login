@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Sign Up
+{% endblock %}
+
+{% block body %}
+<h1 class="text-center display-3">Stupid Twitter!</h1>
+<div class="container">
+   <div class="display-5">Sign up!</div>
+   <sub>Already a user? <a href="/login">Login Here!</a></sub>
+   <form action="/register" method="POST">
+      {% for field in form 
+         if field.widget.input_type != 'hidden' %}
+
+         <p>
+            {{field.label}}
+            {{field(class_="form-control")}}
+
+            {% for error in field.errors %}
+            <p class="form-text text-danger">{{ error }}</p>
+            {% endfor %}
+
+         {% endfor %}
+         <button class="btn btn-success" type="submit">Submit</button>
+   </form>
+</div>
+{% endblock %}
