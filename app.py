@@ -2,14 +2,14 @@ from flask import Flask, redirect, render_template, session, request, flash
 from flask_debugtoolbar import DebugToolbarExtension
 from models import connect_db, db, User, bcrypt, Tweet
 from forms import UserForm, TweetForm
-
+import os
 app = Flask(__name__)
 
 # standardized sqlalchemy init setting and variable structure
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///users_hash'
 app.config['SQLALCHEMY_ECHO'] = True
 app.config['SQLALCHEMY_TRACK_MODICATIONS'] = False
-app.config['SECRET_KEY'] = '2333'
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', '2333')
 # app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
 # debug = DebugToolbarExtension(app)
 # app.debug = True
