@@ -39,7 +39,7 @@ def registration():
          form.username.errors = ['Username taken']
    return render_template('register.html', form=form)
 
-@app.route('/tweets', methods=['GET', 'POST'])
+@app.route('/bashes', methods=['GET', 'POST'])
 def show_tweets():
    form = TweetForm()
    tweets = Tweet.query.all()
@@ -58,7 +58,7 @@ def show_tweets():
          return render_template('tweets.html', form=form, tweets=tweets)
 
 
-@app.route('/tweets/<int:id>', methods=["POST"])
+@app.route('/bashes/<int:id>', methods=["POST"])
 def delete_tweet(id):
    """delete tweet"""
    if 'user_id' not in session:
@@ -68,10 +68,10 @@ def delete_tweet(id):
    if tweet.user_id == session['user_id']:
       db.session.delete(tweet)
       db.session.commit()
-      flash('You have deleted your tweet', 'info')
+      flash('You have deleted your bash', 'info')
       return redirect('/tweets')
    else:
-      flash('You are not authorized to delete this tweet.', 'error')
+      flash('You are not authorized to delete this bash.', 'error')
       return redirect('/tweets')
 
    

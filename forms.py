@@ -11,5 +11,5 @@ class UserForm(FlaskForm):
 
 class TweetForm(FlaskForm):
 
-   comment = StringField('Tweet',
+   comment = StringField('Bash',
                         validators=[InputRequired()])

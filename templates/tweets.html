@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
 
 {% block title %}
-Sign Up
+Bashes
 {% endblock %}
 
 {% block body %}
-<h1 class="text-center display-3">Tweets</h1>
+<h1 class="text-center display-3">Bashes</h1>
 <br><div class="container">
-   <form action="/tweets" method="POST">
+   <form action="/bashes" method="POST">
       {% for field in form 
          if field.widget.input_type != 'hidden' %}
    
@@ -20,7 +20,7 @@ Sign Up
             {% endfor %}
    
          {% endfor %}
-         <button class="btn btn-success" type="submit">Post Tweet</button>
+         <button class="btn btn-success" type="submit">BASH IT</button>
    </form>
 </div>
 <div class="container">
