@@ -6,7 +6,7 @@ import os
 app = Flask(__name__)
 
 # standardized sqlalchemy init setting and variable structure
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'postgresql:///users_hash')
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///users_hash'
 app.config['SQLALCHEMY_ECHO'] = True
 app.config['SQLALCHEMY_TRACK_MODICATIONS'] = False
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', '2333')
@@ -34,7 +34,7 @@ def registration():
          db.session.commit()
          session['user_id'] = new_user.user_id
          flash('Welcome! Successfully created your account!', 'success')
-         return redirect('/tweets')
+         return redirect('/bashes')
       else:
          form.username.errors = ['Username taken']
    return render_template('register.html', form=form)
@@ -53,7 +53,7 @@ def show_tweets():
          new_comment = Tweet(user_id = user, comment=comment)
          db.session.add(new_comment)
          db.session.commit()
-         return redirect('/tweets')
+         return redirect('/bashes')
       else:
          return render_template('tweets.html', form=form, tweets=tweets)
 
@@ -63,16 +63,16 @@ def delete_tweet(id):
    """delete tweet"""
    if 'user_id' not in session:
       flash("Please login first!", 'error')
-      return redirect('/tweets')
+      return redirect('/bashes')
    tweet = Tweet.query.get_or_404(id)
    if tweet.user_id == session['user_id']:
       db.session.delete(tweet)
       db.session.commit()
-      flash('You have deleted your bash', 'info')
-      return redirect('/tweets')
+      flash('You have deleted your bash', 'success')
+      return redirect('/bashes')
    else:
       flash('You are not authorized to delete this bash.', 'error')
-      return redirect('/tweets')
+      return redirect('/bashes')
 
    
 @app.route('/login', methods=["GET", "POST"])
@@ -85,7 +85,7 @@ def login_user():
       if user:
          flash(f'Welcome back, {user.username}', 'success')
          session['user_id'] = user.user_id
-         return redirect('/tweets')
+         return redirect('/bashes')
       else:
          form.username.errors = ['Invalid username/password']
    return render_template('login.html', form=form)
