@@ -6,9 +6,9 @@ import os
 app = Flask(__name__)
 
 # standardized sqlalchemy init setting and variable structure
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///users_hash'
-app.config['SQLALCHEMY_ECHO'] = True
-app.config['SQLALCHEMY_TRACK_MODICATIONS'] = False
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'postgresql:///users_hash')
+app.config['SQLALCHEMY_ECHO'] = os.environ.get('SQLALCHEMY_ECHO', False)
+app.config['SQLALCHEMY_TRACK_MODICATIONS'] = os.environ.get('SQLALCHEMY_TRACK_MODIFICATIONS', False)
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', '2333')
 # app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
 # debug = DebugToolbarExtension(app)
@@ -74,7 +74,7 @@ def delete_tweet(id):
       flash('You are not authorized to delete this bash.', 'error')
       return redirect('/bashes')
 
-   
+
 @app.route('/login', methods=["GET", "POST"])
 def login_user():
    form = UserForm()
