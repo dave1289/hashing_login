@@ -5,7 +5,25 @@ HashBash
 {% endblock %}
 
 {% block body %}
-<div class="display-3 text-center" style="margin-bottom:50vh;">WELCOME TO HASHBASH</div>
-<p class=text-center>Please <a href="/register">register</a> an account or <a href="/login">login</a></p>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="jumbotron">
+                <h1 class="display-3 text-center">WELCOME TO HASHBASH</h1>
+                <div class="row">
+                  <div class="col">
+                    <img src="static/undraw_futuristic_interface.svg" alt="Join Hashbash" srcset="">
+                  </div>
+                  <div class="col">
+                    <div class="card p-5">
+                      <p class="text-center lead">Please <a href="/register" class="btn btn-primary">register</a> an account or <a href="/login">login</a></p>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 {% endblock %}
