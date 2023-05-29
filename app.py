@@ -6,7 +6,7 @@ import os
 app = Flask(__name__)
 
 # standardized sqlalchemy init setting and variable structure
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///users_hash'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://users_hash_user:GlLbiJ7jPnF7v3mges62gUK7J7MYuZt8@dpg-chqhugm7avjb90lo0ea0-a/users_hash'
 app.config['SQLALCHEMY_ECHO'] = True
 app.config['SQLALCHEMY_TRACK_MODICATIONS'] = False
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', '2333')
